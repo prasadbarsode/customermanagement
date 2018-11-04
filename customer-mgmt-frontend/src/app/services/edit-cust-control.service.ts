@@ -30,7 +30,7 @@ export class EditCustControlService {
       
       switch(custInfo.key){
         case 'name':
-        group[custInfo.key] = custInfo.required ? new FormControl(customerDataRes.name || '', [Validators.required, Validators.minLength(2)])
+        group[custInfo.key] = custInfo.required ? new FormControl(customerDataRes.name || '', [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-Z]*$/)])
         : new FormControl(customerDataRes.name || '');
         break;
 

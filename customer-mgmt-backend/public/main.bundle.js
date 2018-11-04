@@ -1227,7 +1227,7 @@ var EditCustControlService = (function () {
         selectedCustDetails.forEach(function (custInfo) {
             switch (custInfo.key) {
                 case 'name':
-                    group[custInfo.key] = custInfo.required ? new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](customerDataRes.name || '', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(2)])
+                    group[custInfo.key] = custInfo.required ? new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](customerDataRes.name || '', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(2), __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern(/^[a-zA-Z]*$/)])
                         : new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */](customerDataRes.name || '');
                     break;
                 case 'country':
