@@ -1,0 +1,116 @@
+<div class="container">
+
+<h2 class="page-header">Edit existing customer details</h2>
+
+  <form (submit)="onEditCustomerSubmit(customerDataRes._id)" #customerForm="ngForm">
+    <div class="row">
+    <div class="form-group col-sm-10">
+      <label>Customer Name</label>
+      <input type="text" [(ngModel)]="customerDataRes.name" name="customerName" #customerName=ngModel minlength="2" class="form-control" required>
+
+    <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)"
+    class="alert alert-danger">
+    <div *ngIf="customerName.errors.required">
+          Name is required.
+    </div>
+    <div *ngIf="customerName.errors.minlength">
+      Name must be at least 2 characters long.
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group col-sm-10">
+        <label for="country">Customer Country</label>
+        <select class="form-control" id="customerCountry" [(ngModel)]="customerDataRes.country" name="customerCountry" required>
+          <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+        </select>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group col-sm-10">
+        <label>Number Of Employees</label>
+        <input type="number" [(ngModel)]="customerDataRes.numberOfEmployees" name="numberOfEmployees" #numberOfEmployees=ngModel min="1" class="form-control" required>
+  
+      <div *ngIf="numberOfEmployees.invalid && (numberOfEmployees.dirty || numberOfEmployees.touched)"
+      class="alert alert-danger">
+      <div *ngIf="numberOfEmployees.errors.required">
+            Number of employees is required field.
+      </div>
+      <!-- <div *ngIf="numberOfEmployees.errors.min">
+        Name must be at least 2 characters long.
+      </div> -->
+      </div>
+  
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="form-group col-sm-10">
+          <label>Website Url</label>
+          <input type="text" [(ngModel)]="customerDataRes.websiteUrl" name="websiteUrl" #websiteUrl=ngModel class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+
+      <div class="form-group">
+          <label>Contract Expiry Date</label>
+          <pre>{{ contractExpDateDisplayFormat | date:'dd/MM/yyyy HH:mm'}}</pre>
+
+        <div class="input-group date" id='datetimepicker1'>
+            <input class="form-control" placeholder="dd-MM-yyyy" name="contractExpiryDate" [(ngModel)]="selectedDate"  ngbDatepicker #d1="ngbDatepicker">
+            <div class="input-group-addon" (click)="d1.toggle()" >
+              <!-- <i class="fa fa-calendar" aria-hidden="true"></i> -->
+            <span class="glyphicon glyphicon-calendar"></span>
+        </div>
+      </div>
+      </div>
+
+      </div>
+      </div>
+      
+      
+
+      <div class="row">
+      <div class="form-group col-sm-10" *ngIf="customerDataRes.type==2">
+          <label>Annual Turnover</label>
+          <input type="number" [(ngModel)]="customerDataRes.annualTurnover" name="annualTurnover" #annualTurnover=ngModel class="form-control" required>
+          {{ customerDataRes.annualTurnover | currency : 'EUR' }}
+        <div *ngIf="annualTurnover.invalid && (annualTurnover.dirty || annualTurnover.touched)"
+        class="alert alert-danger">
+        <div *ngIf="annualTurnover.errors.required">
+            Annual Turnover is required field.
+        </div>
+        </div>
+        </div>
+        </div>
+
+      
+        <div class="row">
+        <div class="form-group col-sm-10" *ngIf="customerDataRes.type==2">
+          <label>Compliance Checked</label>
+        <div class="input-group">
+          <ul>
+            <li>
+                <label class="form-check-inline">
+                    <input type="radio" [(ngModel)]="customerDataRes.complianceChecked" name="complianceChecked" [value]="true" #complianceChecked=ngModel> Yes
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" [(ngModel)]="customerDataRes.complianceChecked" name="complianceChecked" [value]="false"> No
+                </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      
+
+    <input type="submit" class="btn btn-primary" value="Submit" [disabled]="!customerForm.form.valid">
+  </form>
+</div>

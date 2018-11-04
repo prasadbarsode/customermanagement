@@ -1,0 +1,33 @@
+<div>
+  <form [formGroup]="form">
+    <label [attr.for]="custInfo.key">{{custInfo.label}}</label>
+  
+    <div [ngSwitch]="custInfo.controlType" class="row">
+  
+    <div class="form-group col-sm-10">  
+      <input *ngSwitchCase="'textbox'" [formControlName]="custInfo.key"
+              [id]="custInfo.key" [type]="custInfo.type" class="form-control col-sm-10">
+  
+      <select [id]="custInfo.key" *ngSwitchCase="'dropdown'" [formControlName]="custInfo.key" class="form-control col-sm-10">
+        <option *ngFor="let opt of custInfo.options" [value]="opt.key">{{opt.value}}</option>
+      </select>
+
+      <div *ngSwitchCase="'datepicker'" class="input-group date" id='datetimepicker1'>
+        <!-- <input type="text" readonly class="form-control" [formControlName]="custInfo.key"> -->
+        <input [formControlName]="custInfo.key"
+              [id]="custInfo.key" [type]="custInfo.type" readonly
+              class="form-control col-sm-10" ngbDatepicker #d1="ngbDatepicker">
+          <div class="input-group-addon" (click)="d1.toggle()">
+                <span class="glyphicon glyphicon-calendar"></span>
+          </div> 
+      </div>
+      
+    </div> 
+    </div> 
+
+    <div class="row">
+      <div class="alert alert-danger col-sm-10" *ngIf="!isValid">{{custInfo.label}} is required in valid format</div>
+    </div>
+    
+  </form>  
+</div>

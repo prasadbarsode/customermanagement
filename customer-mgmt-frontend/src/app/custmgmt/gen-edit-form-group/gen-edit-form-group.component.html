@@ -1,0 +1,16 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="form">
+
+    <div *ngFor="let custInfo of custInfoToBeEdited" class="form-row">
+      <app-populate-cust-info-fields [custInfo]="custInfo" [form]="form"></app-populate-cust-info-fields>
+    </div>
+
+    <div class="form-row">
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row alert alert-success">
+    <strong>Saved updated customer details</strong><br>
+  </div>
+</div>

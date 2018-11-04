@@ -1,0 +1,68 @@
+<div class="container table-responsive">
+  <h2>Small Customer Details</h2>  
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th>ID</th>
+        <th>Type</th> -->
+        <th>Name</th>
+        <th>Country</th>
+        <th>Number of Employees</th>
+        <th>Website</th>
+        <th>Contract Expiry Date(DD-MM-YYYY)</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let customer of smallCustomers">
+      <!-- <tr class="success" *ngIf="customer.type==1;else big_customer_details">  -->
+      <tr class="success">        
+        <!-- <td>{{customer.id}}</td>
+        <td>{{customer.type}}</td> -->
+        <td>{{customer.name}}</td>
+        <td>{{customer.country}}</td>
+        <td>{{customer.numberOfEmployees}}</td>
+        <td>{{customer.websiteUrl}}</td>
+        <!-- <td>{{customer.contractExpiryDate | date:'dd/MM/yyyy HH:mm'}}</td> -->
+        <td>{{customer.contractExpiryDate | date:'dd-MM-yyyy'}}</td>
+        <td><a class="btn btn-primary" [routerLink]="['/editcustomerdetails', customer._id]">Edit</a></td>
+      </tr>            
+    </tbody>
+  </table> 
+
+
+ <!-- <ng-template #big_customer_details> -->
+  <h2>Big Customer Details</h2>  
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th>ID</th>
+        <th>Type</th> -->
+        <th>Name</th>
+        <th>Country</th>
+        <th>Number of Employees</th>
+        <th>Website</th>
+        <th>Contract Expiry Date(DD-MM-YYYY)</th>
+        <th>Annual Turnover</th>
+        <th>Compliance Checked</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let customer of bigCustomers">
+      <tr class="danger">
+        <!-- <td>{{customer.id}}</td>
+        <td>{{customer.type}}</td> -->
+        <td>{{customer.name}}</td>
+        <td>{{customer.country}}</td>
+        <td>{{customer.numberOfEmployees}}</td>
+        <td>{{customer.websiteUrl}}</td>
+        <td>{{customer.contractExpiryDate | date: 'dd-MM-yyyy' }}</td>
+        <td>{{customer.annualTurnover | currency:'EUR'}}</td>
+        <!-- <td>{{customer.complianceChecked}}</td> -->
+        <td *ngIf='customer.complianceChecked'>Yes</td>
+        <td *ngIf='!customer.complianceChecked'>No</td>
+        <td><a class="btn btn-primary" [routerLink]="['/editcustomerdetails', customer._id]">Edit</a></td>
+      </tr>            
+    </tbody>
+  </table> 
+ <!-- </ng-template> -->
+</div>
