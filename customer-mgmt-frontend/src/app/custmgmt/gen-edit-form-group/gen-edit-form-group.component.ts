@@ -19,11 +19,10 @@ export class GenEditFormGroupComponent implements OnInit, OnDestroy{
 
   @Input() custInfoToBeEdited: CustInfoBase<any>[] = [];
   form: FormGroup;
-  payLoad = '';
+  editedFormData = '';
   custId;
   contractExpDateDisplayFormat: any;
   customerType;
-  europeTimeZoneOffset;
   complianceChecked: boolean;
 
   @Input() customerDataRes : any = {};
@@ -46,7 +45,7 @@ export class GenEditFormGroupComponent implements OnInit, OnDestroy{
 
   onSubmit() {
     //Get revised contract expiry date as per EU offset format
-    let contractExp = this.validaterulesService.getContractExpiryDateinUTCFomrt(this.form.controls['contractExpiryDate'].value,this.europeTimeZoneOffset);
+    let contractExp = this.validaterulesService.getContractExpiryDateinUTCFormat(this.form.controls['contractExpiryDate'].value);
     
     if(this.customerDataRes.type==this.custType.bigCustomerType){
       //Set compliance checked status in boolean format
@@ -80,7 +79,7 @@ export class GenEditFormGroupComponent implements OnInit, OnDestroy{
             setTimeout(()=>{
                 this.router.navigate(['/']);
             },1000);
-            this.payLoad = JSON.stringify(this.form.value);
+            this.editedFormData = JSON.stringify(this.form.value);
         }else{
           alert("Details could not be updated. Please try again");
         }    
@@ -104,7 +103,7 @@ export class GenEditFormGroupComponent implements OnInit, OnDestroy{
             setTimeout(()=>{
               this.router.navigate(['/']);
             },1000);
-            this.payLoad = JSON.stringify(this.form.value);
+            this.editedFormData = JSON.stringify(this.form.value);
           }else{
             alert("Details could not be updated. Please try again");
           }   
@@ -122,7 +121,7 @@ export class GenEditFormGroupComponent implements OnInit, OnDestroy{
       this.customerDataRes.contractExpiryDate = this.validaterulesService.convertUTCtoDateformat(this.customerDataRes.contractExpiryDate);
       
       //Annual turnover and Compliance checked not required in case of small customers
-      if (this.customerDataRes.type==1){
+      if (this.customerDataRes.type==this.custType.smallCustomerType){
         this.custInfoToBeEdited = this.custInfoToBeEdited.filter((custInfoToBeEdited)=>{
           return custInfoToBeEdited.key!='annualTurnover' && custInfoToBeEdited.key!='complianceChecked'
         });

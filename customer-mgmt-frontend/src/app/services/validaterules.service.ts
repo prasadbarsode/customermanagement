@@ -3,32 +3,37 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ValidaterulesService {
 
+    YYYYMMDD_START = 0
+    YYYYMMDD_END = 10;
+    TIMEINDATE_START = 11;
+    TIMEINDATE_END = 19;
+    DATELESSTHANTEN = 10;
+    ISOString_START = 0;
+    ISOString_END = 19;
+    ISOString_TIMEZONEOFFSET = 25;
+    DIVIDEBYSIXTY = 60;
+
   constructor() { }
 
   convertUTCtoDateformat(contractExpiryDate){
-    
     //Convert UTC date format to standard date
-    let contractExpDateDisplayFormat = contractExpiryDate.split(" ");
-      
-    if(contractExpDateDisplayFormat.length > 1){
-      contractExpiryDate = contractExpDateDisplayFormat[0] + contractExpDateDisplayFormat[1];
-    }
-    contractExpDateDisplayFormat = contractExpiryDate.substring(0,10).concat(" ").concat(contractExpiryDate.substring(11,19));
+    let contractExpDateDisplayFormat = contractExpiryDate.substring(this.YYYYMMDD_START,this.YYYYMMDD_END).concat(" ").concat(contractExpiryDate.substring(this.TIMEINDATE_START,this.TIMEINDATE_END));
     contractExpDateDisplayFormat = new Date(contractExpDateDisplayFormat);
-    
     return contractExpDateDisplayFormat;
   }
 
   //This function is called to convert date back to UTC format for DB storage
-  getContractExpiryDateinUTCFomrt(contractExpiryDate,europeTimeZoneOffset){
+  getContractExpiryDateinUTCFormat(contractExpiryDate){
     let contractExpYear = contractExpiryDate.year;
     let contractExpMonth = contractExpiryDate.month;
     let contractExpDate = contractExpiryDate.day;
-
+    
     Date.prototype.toISOString = function() {
-      var tzo = -this.getTimezoneOffset(),
-          dif = tzo >= 0 ? '+' : '-',
-          pad = function(num) {
+      let tzo = -this.getTimezoneOffset();
+      let dif = tzo >= 0 ? '+' : '-';
+    
+    //append 0 if date is less than 10
+      let pad = function(num) {
               var norm = Math.floor(Math.abs(num));
               return (norm < 10 ? '0' : '') + norm;
           };
@@ -42,10 +47,10 @@ export class ValidaterulesService {
           ':' + pad(tzo % 60);
   };
   
-    var dt = new Date();
-    //console.log("dt:", dt.toISOString());
-    let revisedContractEndDate = dt.toISOString().substring(0,19).concat(" ").concat(europeTimeZoneOffset);
-    //console.log("revisedContractEndDate:", revisedContractEndDate);
+    let dt = new Date();
+    
+    let revisedContractEndDate = dt.toISOString().substring(this.ISOString_START,this.ISOString_END).concat(" ").concat(dt.toISOString().substring(this.ISOString_END,this.ISOString_TIMEZONEOFFSET));
+    
     return revisedContractEndDate;
   }
 

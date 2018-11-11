@@ -670,7 +670,7 @@ var GenEditFormGroupComponent = (function () {
         this.editCustControlService = editCustControlService;
         this.validaterulesService = validaterulesService;
         this.custInfoToBeEdited = [];
-        this.payLoad = '';
+        this.editedFormData = '';
         this.customerDataRes = {};
         this.custType = new __WEBPACK_IMPORTED_MODULE_2__model_customer_type__["a" /* CustomerType */]();
         this.custId = this.route.snapshot.params.id;
@@ -681,7 +681,7 @@ var GenEditFormGroupComponent = (function () {
     GenEditFormGroupComponent.prototype.onSubmit = function () {
         var _this = this;
         //Get revised contract expiry date as per EU offset format
-        var contractExp = this.validaterulesService.getContractExpiryDateinUTCFomrt(this.form.controls['contractExpiryDate'].value, this.europeTimeZoneOffset);
+        var contractExp = this.validaterulesService.getContractExpiryDateinUTCFormat(this.form.controls['contractExpiryDate'].value);
         if (this.customerDataRes.type == this.custType.bigCustomerType) {
             //Set compliance checked status in boolean format
             if (this.form.controls['complianceChecked'].value == "true") {
@@ -712,7 +712,7 @@ var GenEditFormGroupComponent = (function () {
                     setTimeout(function () {
                         _this.router.navigate(['/']);
                     }, 1000);
-                    _this.payLoad = JSON.stringify(_this.form.value);
+                    _this.editedFormData = JSON.stringify(_this.form.value);
                 }
                 else {
                     alert("Details could not be updated. Please try again");
@@ -737,7 +737,7 @@ var GenEditFormGroupComponent = (function () {
                     setTimeout(function () {
                         _this.router.navigate(['/']);
                     }, 1000);
-                    _this.payLoad = JSON.stringify(_this.form.value);
+                    _this.editedFormData = JSON.stringify(_this.form.value);
                 }
                 else {
                     alert("Details could not be updated. Please try again");
@@ -753,7 +753,7 @@ var GenEditFormGroupComponent = (function () {
             //get UTC date in correct format as it has extra space in test data
             _this.customerDataRes.contractExpiryDate = _this.validaterulesService.convertUTCtoDateformat(_this.customerDataRes.contractExpiryDate);
             //Annual turnover and Compliance checked not required in case of small customers
-            if (_this.customerDataRes.type == 1) {
+            if (_this.customerDataRes.type == _this.custType.smallCustomerType) {
                 _this.custInfoToBeEdited = _this.custInfoToBeEdited.filter(function (custInfoToBeEdited) {
                     return custInfoToBeEdited.key != 'annualTurnover' && custInfoToBeEdited.key != 'complianceChecked';
                 });
@@ -1290,24 +1290,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ValidaterulesService = (function () {
     function ValidaterulesService() {
+        this.YYYYMMDD_START = 0;
+        this.YYYYMMDD_END = 10;
+        this.TIMEINDATE_START = 11;
+        this.TIMEINDATE_END = 19;
+        this.DATELESSTHANTEN = 10;
+        this.ISOString_START = 0;
+        this.ISOString_END = 19;
+        this.ISOString_TIMEZONEOFFSET = 25;
+        this.DIVIDEBYSIXTY = 60;
     }
     ValidaterulesService.prototype.convertUTCtoDateformat = function (contractExpiryDate) {
         //Convert UTC date format to standard date
-        var contractExpDateDisplayFormat = contractExpiryDate.split(" ");
-        if (contractExpDateDisplayFormat.length > 1) {
-            contractExpiryDate = contractExpDateDisplayFormat[0] + contractExpDateDisplayFormat[1];
-        }
-        contractExpDateDisplayFormat = contractExpiryDate.substring(0, 10).concat(" ").concat(contractExpiryDate.substring(11, 19));
+        var contractExpDateDisplayFormat = contractExpiryDate.substring(this.YYYYMMDD_START, this.YYYYMMDD_END).concat(" ").concat(contractExpiryDate.substring(this.TIMEINDATE_START, this.TIMEINDATE_END));
         contractExpDateDisplayFormat = new Date(contractExpDateDisplayFormat);
         return contractExpDateDisplayFormat;
     };
     //This function is called to convert date back to UTC format for DB storage
-    ValidaterulesService.prototype.getContractExpiryDateinUTCFomrt = function (contractExpiryDate, europeTimeZoneOffset) {
+    ValidaterulesService.prototype.getContractExpiryDateinUTCFormat = function (contractExpiryDate) {
         var contractExpYear = contractExpiryDate.year;
         var contractExpMonth = contractExpiryDate.month;
         var contractExpDate = contractExpiryDate.day;
         Date.prototype.toISOString = function () {
-            var tzo = -this.getTimezoneOffset(), dif = tzo >= 0 ? '+' : '-', pad = function (num) {
+            var tzo = -this.getTimezoneOffset();
+            var dif = tzo >= 0 ? '+' : '-';
+            //append 0 if date is less than 10
+            var pad = function (num) {
                 var norm = Math.floor(Math.abs(num));
                 return (norm < 10 ? '0' : '') + norm;
             };
@@ -1321,9 +1329,7 @@ var ValidaterulesService = (function () {
                 ':' + pad(tzo % 60);
         };
         var dt = new Date();
-        //console.log("dt:", dt.toISOString());
-        var revisedContractEndDate = dt.toISOString().substring(0, 19).concat(" ").concat(europeTimeZoneOffset);
-        //console.log("revisedContractEndDate:", revisedContractEndDate);
+        var revisedContractEndDate = dt.toISOString().substring(this.ISOString_START, this.ISOString_END).concat(" ").concat(dt.toISOString().substring(this.ISOString_END, this.ISOString_TIMEZONEOFFSET));
         return revisedContractEndDate;
     };
     ValidaterulesService = __decorate([
