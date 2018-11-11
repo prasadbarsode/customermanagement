@@ -16,7 +16,17 @@ export class CustDetailsServiceMock {
       "country":"Sweden",
       "websiteUrl":"http://Stanley.com",
       "numberOfEmployees": 10,
-      "contractExpiryDate":"2018-11-16T12:06:41 -01:00"}
+      "contractExpiryDate":"2018-11-16T12:06:41 -01:00"},
+      {"_id":"5bd9156f36b7d3a932eb5b15",
+      "id":"5b7fb458c59b6073e7d04b42",
+      "type":2,
+      "name":"Kathleen",
+      "country":"Sweden",
+      "websiteUrl":"http://Brandie.com",
+      "numberOfEmployees":20,
+      "contractExpiryDate":"2018-11-30T11:59:30 -01:00",
+      "annualTurnover":400000,
+      "complianceChecked":false}
     ];  
      return Observable.of(custdetails);
   }

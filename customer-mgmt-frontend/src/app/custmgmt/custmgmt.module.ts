@@ -8,7 +8,7 @@ import { ViewcustdetailsComponent } from './viewcustdetails/viewcustdetails.comp
 import { EditcustomerdetailsComponent } from './editcustomerdetails/editcustomerdetails.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { DynamiccusteditComponent } from './dynamiccustedit/dynamiccustedit.component';
+
 import { GenEditFormGroupComponent } from './gen-edit-form-group/gen-edit-form-group.component';
 import { PopulateCustInfoFieldsComponent } from './populate-cust-info-fields/populate-cust-info-fields.component';
 
@@ -22,7 +22,6 @@ import { PopulateCustInfoFieldsComponent } from './populate-cust-info-fields/pop
   ],
   declarations: [ViewcustdetailsComponent, 
     EditcustomerdetailsComponent, 
-    DynamiccusteditComponent, 
     GenEditFormGroupComponent, 
     PopulateCustInfoFieldsComponent],
   schemas: [
@@ -32,7 +31,7 @@ import { PopulateCustInfoFieldsComponent } from './populate-cust-info-fields/pop
   exports: [
     ViewcustdetailsComponent, 
     EditcustomerdetailsComponent, 
-    DynamiccusteditComponent, 
+     
     GenEditFormGroupComponent, 
     PopulateCustInfoFieldsComponent
   ] 

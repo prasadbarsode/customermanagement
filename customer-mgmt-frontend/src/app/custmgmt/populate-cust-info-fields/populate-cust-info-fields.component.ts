@@ -1,12 +1,10 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy  } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 import { CustInfoBase }     from '../cust-info-base';
 import { CustomerType } from '../../model/customer-type';
 
-import {NgbDatepicker, NgbDateAdapter,
-  NgbDateStruct, NgbDateParserFormatter, NgbDatepickerConfig,
-  NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerConfig, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-populate-cust-info-fields',
@@ -32,9 +30,7 @@ export class PopulateCustInfoFieldsComponent implements OnInit{
   get isValid() { return this.form.controls[this.custInfo.key].valid; }
 
   ngOnInit() {
-
     this.getValidContractDates();
-
   }
   
   getValidContractDates(){
@@ -58,10 +54,6 @@ export class PopulateCustInfoFieldsComponent implements OnInit{
         day: this.currentDate.getDate()};
     } 
   
-  }
-
-  ngAfterViewInit() {
-    
   }
 
 }

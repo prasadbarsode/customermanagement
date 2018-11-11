@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { CustomerType } from '../../model/customer-type';
 import { CustInfoBase } from '../cust-info-base';

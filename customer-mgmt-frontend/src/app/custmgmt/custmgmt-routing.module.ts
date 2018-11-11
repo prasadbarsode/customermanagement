@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ViewcustdetailsComponent } from './viewcustdetails/viewcustdetails.component';
 import { EditcustomerdetailsComponent } from './editcustomerdetails/editcustomerdetails.component';
-import { DynamiccusteditComponent } from './dynamiccustedit/dynamiccustedit.component';
 
 const routes: Routes = [
   { path: '',
@@ -11,8 +10,7 @@ const routes: Routes = [
   },
   {
         path: 'editcustomerdetails/:id',
-        //component: EditcustomerdetailsComponent, 
-        component: DynamiccusteditComponent,        
+        component: EditcustomerdetailsComponent,        
   } 
 ];
 

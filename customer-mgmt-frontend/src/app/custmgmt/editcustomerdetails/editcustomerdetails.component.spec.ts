@@ -6,6 +6,7 @@ import { CustdetailsService } from '../../services/custdetails.service';
 import {BaseRequestOptions, ConnectionBackend, Http, RequestOptions} from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('EditcustomerdetailsComponent', () => {
   let component: EditcustomerdetailsComponent;
@@ -17,7 +18,8 @@ describe('EditcustomerdetailsComponent', () => {
       declarations: [ EditcustomerdetailsComponent ],
       providers: [CustdetailsService, Http,
         {provide: ConnectionBackend, useClass: MockBackend},
-        {provide: RequestOptions, useClass: BaseRequestOptions}]
+        {provide: RequestOptions, useClass: BaseRequestOptions}],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
 

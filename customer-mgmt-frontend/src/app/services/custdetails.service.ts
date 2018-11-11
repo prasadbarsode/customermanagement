@@ -40,7 +40,7 @@ export class CustdetailsService {
       });
   }
 
-  // TODO: get from a remote source of question metadata
+  // TODO: get from a remote source of customer field metadata
   // TODO: make asynchronous
   getCustInfoBase() {
   let editCustDetailsFields: CustInfoBase<any>[] = [  
