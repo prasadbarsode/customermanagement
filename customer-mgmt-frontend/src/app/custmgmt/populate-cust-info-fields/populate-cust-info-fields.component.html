@@ -13,7 +13,6 @@
       </select>
 
       <div *ngSwitchCase="'datepicker'" class="input-group date" id='datetimepicker1'>
-        <!-- <input type="text" readonly class="form-control" [formControlName]="custInfo.key"> -->
         <input [formControlName]="custInfo.key"
               [id]="custInfo.key" [type]="custInfo.type" readonly
               class="form-control col-sm-10" ngbDatepicker #d1="ngbDatepicker">

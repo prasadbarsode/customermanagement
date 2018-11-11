@@ -1,27 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 
 import { CustInfoBase } from '../custmgmt/cust-info-base';
 
 @Injectable()
 export class EditCustControlService {
 
-  private _url:string = 'http://localhost:3000/getcustomerdetails/customerdetails/';
-
-  constructor(private http: Http) { }
-
-  getSelectedCustomerInfo(id){
-    return this.http.get(this._url + id)
-      .map(res => {
-        //console.log(res);
-        return res.json()
-      });
-  }
+  constructor() { }
 
   toFormGroup(selectedCustDetails: CustInfoBase<any>[], customerDataRes) {
 

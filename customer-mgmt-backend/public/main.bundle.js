@@ -51,7 +51,7 @@ var AppRoutingModule = (function () {
     function AppRoutingModule() {
     }
     AppRoutingModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* RouterModule */].forRoot(appRoutes)
@@ -110,7 +110,7 @@ var AppComponent = (function () {
         this.title = 'app';
     }
     AppComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
@@ -162,7 +162,7 @@ var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["J" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]
             ],
@@ -246,7 +246,7 @@ var CustmgmtRoutingModule = (function () {
     function CustmgmtRoutingModule() {
     }
     CustmgmtRoutingModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
             imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forChild(routes)],
             exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]]
         })
@@ -294,7 +294,7 @@ var CustmgmtModule = (function () {
     function CustmgmtModule() {
     }
     CustmgmtModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
@@ -302,7 +302,22 @@ var CustmgmtModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__ng_bootstrap_ng_bootstrap__["c" /* NgbModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_3__custmgmt_routing_module__["a" /* CustmgmtRoutingModule */]
             ],
-            declarations: [__WEBPACK_IMPORTED_MODULE_4__viewcustdetails_viewcustdetails_component__["a" /* ViewcustdetailsComponent */], __WEBPACK_IMPORTED_MODULE_5__editcustomerdetails_editcustomerdetails_component__["a" /* EditcustomerdetailsComponent */], __WEBPACK_IMPORTED_MODULE_7__dynamiccustedit_dynamiccustedit_component__["a" /* DynamiccusteditComponent */], __WEBPACK_IMPORTED_MODULE_8__gen_edit_form_group_gen_edit_form_group_component__["a" /* GenEditFormGroupComponent */], __WEBPACK_IMPORTED_MODULE_9__populate_cust_info_fields_populate_cust_info_fields_component__["a" /* PopulateCustInfoFieldsComponent */]]
+            declarations: [__WEBPACK_IMPORTED_MODULE_4__viewcustdetails_viewcustdetails_component__["a" /* ViewcustdetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__editcustomerdetails_editcustomerdetails_component__["a" /* EditcustomerdetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__dynamiccustedit_dynamiccustedit_component__["a" /* DynamiccusteditComponent */],
+                __WEBPACK_IMPORTED_MODULE_8__gen_edit_form_group_gen_edit_form_group_component__["a" /* GenEditFormGroupComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__populate_cust_info_fields_populate_cust_info_fields_component__["a" /* PopulateCustInfoFieldsComponent */]],
+            schemas: [
+                __WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NO_ERRORS_SCHEMA */],
+                __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* CUSTOM_ELEMENTS_SCHEMA */]
+            ],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_4__viewcustdetails_viewcustdetails_component__["a" /* ViewcustdetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__editcustomerdetails_editcustomerdetails_component__["a" /* EditcustomerdetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__dynamiccustedit_dynamiccustedit_component__["a" /* DynamiccusteditComponent */],
+                __WEBPACK_IMPORTED_MODULE_8__gen_edit_form_group_gen_edit_form_group_component__["a" /* GenEditFormGroupComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__populate_cust_info_fields_populate_cust_info_fields_component__["a" /* PopulateCustInfoFieldsComponent */]
+            ]
         })
     ], CustmgmtModule);
     return CustmgmtModule;
@@ -401,7 +416,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/custmgmt/dynamiccustedit/dynamiccustedit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <h2 class=\"page-header\">Edit existing customer details</h2>\n\n  \n      <app-gen-edit-form-group [custInfoToBeEdited]=\"custInfoToBeEdited\" *ngIf=\"custInfoToBeEdited.length > 0\">\n\n        </app-gen-edit-form-group>\n  \n</div>\n"
+module.exports = "<div class=\"container\">\n\n  <h2 class=\"page-header\">Edit existing customer details</h2>\n  \n      <app-gen-edit-form-group [custInfoToBeEdited]=\"custInfoToBeEdited\" *ngIf=\"custInfoToBeEdited.length > 0\">\n\n        </app-gen-edit-form-group>\n  \n</div>\n"
 
 /***/ }),
 
@@ -428,16 +443,15 @@ var DynamiccusteditComponent = (function () {
         this.custdetailsService = custdetailsService;
         this.customerDataRes = {};
         this.custInfoToBeEdited = this.custdetailsService.getCustInfoBase();
-        //console.log("custInfoToBeEdited:", this.custInfoToBeEdited);
     }
     DynamiccusteditComponent.prototype.ngOnInit = function () {
     };
     DynamiccusteditComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-dynamiccustedit',
             template: __webpack_require__("../../../../../src/app/custmgmt/dynamiccustedit/dynamiccustedit.component.html"),
             styles: [__webpack_require__("../../../../../src/app/custmgmt/dynamiccustedit/dynamiccustedit.component.css")],
-            providers: [__WEBPACK_IMPORTED_MODULE_1__services_custdetails_service__["a" /* CustdetailsService */]]
+            providers: [__WEBPACK_IMPORTED_MODULE_1__services_custdetails_service__["a" /* CustdetailsService */]],
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_custdetails_service__["a" /* CustdetailsService */]])
     ], DynamiccusteditComponent);
@@ -577,7 +591,7 @@ var EditcustomerdetailsComponent = (function () {
         //this.router.navigate(['/']);
     };
     EditcustomerdetailsComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-editcustomerdetails',
             template: __webpack_require__("../../../../../src/app/custmgmt/editcustomerdetails/editcustomerdetails.component.html"),
             styles: [__webpack_require__("../../../../../src/app/custmgmt/editcustomerdetails/editcustomerdetails.component.css")]
@@ -627,10 +641,11 @@ module.exports = "<div>\n  <form (ngSubmit)=\"onSubmit()\" [formGroup]=\"form\" 
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GenEditFormGroupComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_edit_cust_control_service__ = __webpack_require__("../../../../../src/app/services/edit-cust-control.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_custdetails_service__ = __webpack_require__("../../../../../src/app/services/custdetails.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_validaterules_service__ = __webpack_require__("../../../../../src/app/services/validaterules.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_customer_type__ = __webpack_require__("../../../../../src/app/model/customer-type.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_edit_cust_control_service__ = __webpack_require__("../../../../../src/app/services/edit-cust-control.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_custdetails_service__ = __webpack_require__("../../../../../src/app/services/custdetails.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_validaterules_service__ = __webpack_require__("../../../../../src/app/services/validaterules.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -640,6 +655,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -656,6 +672,7 @@ var GenEditFormGroupComponent = (function () {
         this.custInfoToBeEdited = [];
         this.payLoad = '';
         this.customerDataRes = {};
+        this.custType = new __WEBPACK_IMPORTED_MODULE_2__model_customer_type__["a" /* CustomerType */]();
         this.custId = this.route.snapshot.params.id;
     }
     GenEditFormGroupComponent.prototype.ngOnInit = function () {
@@ -665,7 +682,7 @@ var GenEditFormGroupComponent = (function () {
         var _this = this;
         //Get revised contract expiry date as per EU offset format
         var contractExp = this.validaterulesService.getContractExpiryDateinUTCFomrt(this.form.controls['contractExpiryDate'].value, this.europeTimeZoneOffset);
-        if (this.customerDataRes.type == 2) {
+        if (this.customerDataRes.type == this.custType.bigCustomerType) {
             //Set compliance checked status in boolean format
             if (this.form.controls['complianceChecked'].value == "true") {
                 this.complianceChecked = true;
@@ -674,7 +691,6 @@ var GenEditFormGroupComponent = (function () {
                 || this.form.controls['complianceChecked'].value == null
                 || this.form.controls['complianceChecked'].value == "") {
                 this.complianceChecked = false;
-                //console.log("Type of compliance checked:", typeof(this.complianceChecked));
             }
             //Request body object with updated customer details
             var editedCustomerData = {
@@ -689,7 +705,6 @@ var GenEditFormGroupComponent = (function () {
                 annualTurnover: parseInt(this.form.controls['annualTurnover'].value),
                 complianceChecked: this.complianceChecked
             };
-            console.log(editedCustomerData);
             // Update existing big customer details
             this.custdetailsService.updateCustomerDetail(editedCustomerData).subscribe(function (data) {
                 if (data.success) {
@@ -704,7 +719,7 @@ var GenEditFormGroupComponent = (function () {
                 }
             });
         }
-        else if (this.customerDataRes.type == 1) {
+        else if (this.customerDataRes.type == this.custType.smallCustomerType) {
             var editedCustomerData = {
                 _id: this.customerDataRes._id,
                 id: this.customerDataRes.id,
@@ -735,22 +750,18 @@ var GenEditFormGroupComponent = (function () {
         this.custdetailsService.getSelectedCustomerInfo(this.custId).subscribe(function (data) {
             //Receive data from backend
             _this.customerDataRes = data;
-            //console.log("Server Response:", this.customerDataRes);
             //get UTC date in correct format as it has extra space in test data
-            _this.customerDataRes.contractExpiryDate = _this.convertUTCtoDateformat(_this.customerDataRes.contractExpiryDate);
-            //console.log("Formatted Customer data:", this.customerDataRes);
+            _this.customerDataRes.contractExpiryDate = _this.validaterulesService.convertUTCtoDateformat(_this.customerDataRes.contractExpiryDate);
             //Annual turnover and Compliance checked not required in case of small customers
             if (_this.customerDataRes.type == 1) {
                 _this.custInfoToBeEdited = _this.custInfoToBeEdited.filter(function (custInfoToBeEdited) {
                     return custInfoToBeEdited.key != 'annualTurnover' && custInfoToBeEdited.key != 'complianceChecked';
                 });
-                //console.log("revised custInfoToBeEdited:", this.custInfoToBeEdited);
             }
             //Populate FormGroup
             _this.form = _this.editCustControlService.toFormGroup(_this.custInfoToBeEdited, _this.customerDataRes);
             //Set display date in yyyy-MM-dd as it is only accepted format in ng-Bootstrap
             _this.form.value.contractExpiryDate = new Date(_this.form.value.contractExpiryDate);
-            //console.log(this.form.value.contractExpiryDate);
             _this.form.controls['contractExpiryDate'].setValue({
                 year: parseInt(_this.form.value.contractExpiryDate.getFullYear()),
                 month: parseInt(_this.form.value.contractExpiryDate.getMonth() + 1),
@@ -763,44 +774,31 @@ var GenEditFormGroupComponent = (function () {
             //It is used to differentiate between max date for small and big customers
             _this.form.addControl('customerType', new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required));
             _this.form.controls['customerType'].setValue(_this.customerDataRes.type);
-            //console.log(this.form.value);
         });
     };
-    GenEditFormGroupComponent.prototype.convertUTCtoDateformat = function (contractExpiryDate) {
-        //Convert UTC date format to standard date
-        this.contractExpDateDisplayFormat = contractExpiryDate.split(" ");
-        //Get Counrty Specific Timezone offset from existing entry
-        //this.europeTimeZoneOffset = contractExpiryDate.substring(19,contractExpiryDate.length);
-        this.europeTimeZoneOffset = this.contractExpDateDisplayFormat[1];
-        //console.log("europeTimeZoneOffset:", this.europeTimeZoneOffset);
-        if (this.contractExpDateDisplayFormat.length > 1) {
-            contractExpiryDate = this.contractExpDateDisplayFormat[0] + this.contractExpDateDisplayFormat[1];
-        }
-        this.contractExpDateDisplayFormat = contractExpiryDate.substring(0, 10).concat(" ").concat(contractExpiryDate.substring(11, 19));
-        this.contractExpDateDisplayFormat = new Date(this.contractExpDateDisplayFormat);
-        //this.contractExpDateDisplayFormat = new Date(contractExpiryDate);
-        return this.contractExpDateDisplayFormat;
+    GenEditFormGroupComponent.prototype.ngOnDestroy = function () {
+        this.custdetailsService.getSelectedCustomerInfo(this.custId).subscribe().unsubscribe();
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
         __metadata("design:type", Array)
     ], GenEditFormGroupComponent.prototype, "custInfoToBeEdited", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
         __metadata("design:type", Object)
     ], GenEditFormGroupComponent.prototype, "customerDataRes", void 0);
     GenEditFormGroupComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-gen-edit-form-group',
             template: __webpack_require__("../../../../../src/app/custmgmt/gen-edit-form-group/gen-edit-form-group.component.html"),
             styles: [__webpack_require__("../../../../../src/app/custmgmt/gen-edit-form-group/gen-edit-form-group.component.css")],
-            providers: [__WEBPACK_IMPORTED_MODULE_2__services_edit_cust_control_service__["a" /* EditCustControlService */]]
+            providers: [__WEBPACK_IMPORTED_MODULE_3__services_edit_cust_control_service__["a" /* EditCustControlService */]],
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_custdetails_service__["a" /* CustdetailsService */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_2__services_edit_cust_control_service__["a" /* EditCustControlService */],
-            __WEBPACK_IMPORTED_MODULE_5__services_validaterules_service__["a" /* ValidaterulesService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_custdetails_service__["a" /* CustdetailsService */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3__services_edit_cust_control_service__["a" /* EditCustControlService */],
+            __WEBPACK_IMPORTED_MODULE_6__services_validaterules_service__["a" /* ValidaterulesService */]])
     ], GenEditFormGroupComponent);
     return GenEditFormGroupComponent;
 }());
@@ -830,7 +828,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/custmgmt/populate-cust-info-fields/populate-cust-info-fields.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <form [formGroup]=\"form\">\n    <label [attr.for]=\"custInfo.key\">{{custInfo.label}}</label>\n  \n    <div [ngSwitch]=\"custInfo.controlType\" class=\"row\">\n  \n    <div class=\"form-group col-sm-10\">  \n      <input *ngSwitchCase=\"'textbox'\" [formControlName]=\"custInfo.key\"\n              [id]=\"custInfo.key\" [type]=\"custInfo.type\" class=\"form-control col-sm-10\">\n  \n      <select [id]=\"custInfo.key\" *ngSwitchCase=\"'dropdown'\" [formControlName]=\"custInfo.key\" class=\"form-control col-sm-10\">\n        <option *ngFor=\"let opt of custInfo.options\" [value]=\"opt.key\">{{opt.value}}</option>\n      </select>\n\n      <div *ngSwitchCase=\"'datepicker'\" class=\"input-group date\" id='datetimepicker1'>\n        <!-- <input type=\"text\" readonly class=\"form-control\" [formControlName]=\"custInfo.key\"> -->\n        <input [formControlName]=\"custInfo.key\"\n              [id]=\"custInfo.key\" [type]=\"custInfo.type\" readonly\n              class=\"form-control col-sm-10\" ngbDatepicker #d1=\"ngbDatepicker\">\n          <div class=\"input-group-addon\" (click)=\"d1.toggle()\">\n                <span class=\"glyphicon glyphicon-calendar\"></span>\n          </div> \n      </div>\n      \n    </div> \n    </div> \n\n    <div class=\"row\">\n      <div class=\"alert alert-danger col-sm-10\" *ngIf=\"!isValid\">{{custInfo.label}} is required in valid format</div>\n    </div>\n    \n  </form>  \n</div>"
+module.exports = "<div>\n  <form [formGroup]=\"form\">\n    <label [attr.for]=\"custInfo.key\">{{custInfo.label}}</label>\n  \n    <div [ngSwitch]=\"custInfo.controlType\" class=\"row\">\n  \n    <div class=\"form-group col-sm-10\">  \n      <input *ngSwitchCase=\"'textbox'\" [formControlName]=\"custInfo.key\"\n              [id]=\"custInfo.key\" [type]=\"custInfo.type\" class=\"form-control col-sm-10\">\n  \n      <select [id]=\"custInfo.key\" *ngSwitchCase=\"'dropdown'\" [formControlName]=\"custInfo.key\" class=\"form-control col-sm-10\">\n        <option *ngFor=\"let opt of custInfo.options\" [value]=\"opt.key\">{{opt.value}}</option>\n      </select>\n\n      <div *ngSwitchCase=\"'datepicker'\" class=\"input-group date\" id='datetimepicker1'>\n        <input [formControlName]=\"custInfo.key\"\n              [id]=\"custInfo.key\" [type]=\"custInfo.type\" readonly\n              class=\"form-control col-sm-10\" ngbDatepicker #d1=\"ngbDatepicker\">\n          <div class=\"input-group-addon\" (click)=\"d1.toggle()\">\n                <span class=\"glyphicon glyphicon-calendar\"></span>\n          </div> \n      </div>\n      \n    </div> \n    </div> \n\n    <div class=\"row\">\n      <div class=\"alert alert-danger col-sm-10\" *ngIf=\"!isValid\">{{custInfo.label}} is required in valid format</div>\n    </div>\n    \n  </form>  \n</div>"
 
 /***/ }),
 
@@ -842,7 +840,8 @@ module.exports = "<div>\n  <form [formGroup]=\"form\">\n    <label [attr.for]=\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cust_info_base__ = __webpack_require__("../../../../../src/app/custmgmt/cust-info-base.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_customer_type__ = __webpack_require__("../../../../../src/app/model/customer-type.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -856,11 +855,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PopulateCustInfoFieldsComponent = (function () {
     function PopulateCustInfoFieldsComponent(calendar, config) {
-        //console.log("inside populate field:", this.customerType);
         this.calendar = calendar;
         this.config = config;
+        this.custType = new __WEBPACK_IMPORTED_MODULE_3__model_customer_type__["a" /* CustomerType */]();
     }
     Object.defineProperty(PopulateCustInfoFieldsComponent.prototype, "isValid", {
         get: function () { return this.form.controls[this.custInfo.key].valid; },
@@ -880,41 +880,40 @@ var PopulateCustInfoFieldsComponent = (function () {
         //Calculate max date allowed for contract expiry
         //Max exp date is plus 2 years from current date in case of small customer(typ=1)
         //Max exp date is plus 3 years from current date in case of big customer (type=2)  
-        if (this.form.controls['customerType'].value == 2) {
+        if (this.form.controls['customerType'].value == this.custType.bigCustomerType) {
             this.config.maxDate = { year: this.currentDate.getFullYear() + 3,
                 month: this.currentDate.getMonth() + 1,
                 day: this.currentDate.getDate() };
         }
-        else if (this.form.controls['customerType'].value == 1) {
+        else if (this.form.controls['customerType'].value == this.custType.smallCustomerType) {
             this.config.maxDate = { year: this.currentDate.getFullYear() + 2,
                 month: this.currentDate.getMonth() + 1,
                 day: this.currentDate.getDate() };
         }
-        //console.log("Inside populate:", this.form.controls['contractExpiryDate'].value)
     };
     PopulateCustInfoFieldsComponent.prototype.ngAfterViewInit = function () {
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__cust_info_base__["a" /* CustInfoBase */])
     ], PopulateCustInfoFieldsComponent.prototype, "custInfo", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */])
     ], PopulateCustInfoFieldsComponent.prototype, "form", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
         __metadata("design:type", Object)
     ], PopulateCustInfoFieldsComponent.prototype, "customerType", void 0);
     PopulateCustInfoFieldsComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-populate-cust-info-fields',
             template: __webpack_require__("../../../../../src/app/custmgmt/populate-cust-info-fields/populate-cust-info-fields.component.html"),
             styles: [__webpack_require__("../../../../../src/app/custmgmt/populate-cust-info-fields/populate-cust-info-fields.component.css")],
-            changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["j" /* ChangeDetectionStrategy */].OnPush,
+            changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* ChangeDetectionStrategy */].OnPush,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["a" /* NgbCalendar */],
-            __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__["b" /* NgbDatepickerConfig */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["a" /* NgbCalendar */],
+            __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["b" /* NgbDatepickerConfig */]])
     ], PopulateCustInfoFieldsComponent);
     return PopulateCustInfoFieldsComponent;
 }());
@@ -977,7 +976,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/custmgmt/viewcustdetails/viewcustdetails.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container table-responsive\">\n  <h2>Small Customer Details</h2>  \n  <table class=\"table\">\n    <thead>\n      <tr>\n        <!-- <th>ID</th>\n        <th>Type</th> -->\n        <th>Name</th>\n        <th>Country</th>\n        <th>Number of Employees</th>\n        <th>Website</th>\n        <th>Contract Expiry Date(DD-MM-YYYY)</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody *ngFor=\"let customer of smallCustomers\">\n      <!-- <tr class=\"success\" *ngIf=\"customer.type==1;else big_customer_details\">  -->\n      <tr class=\"success\">        \n        <!-- <td>{{customer.id}}</td>\n        <td>{{customer.type}}</td> -->\n        <td>{{customer.name}}</td>\n        <td>{{customer.country}}</td>\n        <td>{{customer.numberOfEmployees}}</td>\n        <td>{{customer.websiteUrl}}</td>\n        <!-- <td>{{customer.contractExpiryDate | date:'dd/MM/yyyy HH:mm'}}</td> -->\n        <td>{{customer.contractExpiryDate | date:'dd-MM-yyyy'}}</td>\n        <td><a class=\"btn btn-primary\" [routerLink]=\"['/editcustomerdetails', customer._id]\">Edit</a></td>\n      </tr>            \n    </tbody>\n  </table> \n\n\n <!-- <ng-template #big_customer_details> -->\n  <h2>Big Customer Details</h2>  \n  <table class=\"table\">\n    <thead>\n      <tr>\n        <!-- <th>ID</th>\n        <th>Type</th> -->\n        <th>Name</th>\n        <th>Country</th>\n        <th>Number of Employees</th>\n        <th>Website</th>\n        <th>Contract Expiry Date(DD-MM-YYYY)</th>\n        <th>Annual Turnover</th>\n        <th>Compliance Checked</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody *ngFor=\"let customer of bigCustomers\">\n      <tr class=\"danger\">\n        <!-- <td>{{customer.id}}</td>\n        <td>{{customer.type}}</td> -->\n        <td>{{customer.name}}</td>\n        <td>{{customer.country}}</td>\n        <td>{{customer.numberOfEmployees}}</td>\n        <td>{{customer.websiteUrl}}</td>\n        <td>{{customer.contractExpiryDate | date: 'dd-MM-yyyy' }}</td>\n        <td>{{customer.annualTurnover | currency:'EUR'}}</td>\n        <!-- <td>{{customer.complianceChecked}}</td> -->\n        <td *ngIf='customer.complianceChecked'>Yes</td>\n        <td *ngIf='!customer.complianceChecked'>No</td>\n        <td><a class=\"btn btn-primary\" [routerLink]=\"['/editcustomerdetails', customer._id]\">Edit</a></td>\n      </tr>            \n    </tbody>\n  </table> \n <!-- </ng-template> -->\n</div>"
+module.exports = "<div class=\"container table-responsive\">\n  <h2>Small Customer Details</h2>  \n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th>Name</th>\n        <th>Country</th>\n        <th>Number of Employees</th>\n        <th>Website</th>\n        <th>Contract Expiry Date(DD-MM-YYYY)</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody *ngFor=\"let customer of smallCustomers\">\n      <tr class=\"success\">        \n        <td>{{customer.name}}</td>\n        <td>{{customer.country}}</td>\n        <td>{{customer.numberOfEmployees}}</td>\n        <td>{{customer.websiteUrl}}</td>\n        <td>{{customer.contractExpiryDate | date:'dd-MM-yyyy'}}</td>\n        <td><a class=\"btn btn-primary\" [routerLink]=\"['/editcustomerdetails', customer._id]\">Edit</a></td>\n      </tr>            \n    </tbody>\n  </table> \n\n  <h2>Big Customer Details</h2>  \n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th>Name</th>\n        <th>Country</th>\n        <th>Number of Employees</th>\n        <th>Website</th>\n        <th>Contract Expiry Date(DD-MM-YYYY)</th>\n        <th>Annual Turnover</th>\n        <th>Compliance Checked</th>\n        <th>Action</th>\n      </tr>\n    </thead>\n    <tbody *ngFor=\"let customer of bigCustomers\">\n      <tr class=\"danger\">\n        <td>{{customer.name}}</td>\n        <td>{{customer.country}}</td>\n        <td>{{customer.numberOfEmployees}}</td>\n        <td>{{customer.websiteUrl}}</td>\n        <td>{{customer.contractExpiryDate | date: 'dd-MM-yyyy' }}</td>\n        <td>{{customer.annualTurnover | currency:'EUR'}}</td>\n        <td *ngIf='customer.complianceChecked'>Yes</td>\n        <td *ngIf='!customer.complianceChecked'>No</td>\n        <td><a class=\"btn btn-primary\" [routerLink]=\"['/editcustomerdetails', customer._id]\">Edit</a></td>\n      </tr>            \n    </tbody>\n  </table> \n</div>"
 
 /***/ }),
 
@@ -987,8 +986,9 @@ module.exports = "<div class=\"container table-responsive\">\n  <h2>Small Custom
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewcustdetailsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_custdetails_service__ = __webpack_require__("../../../../../src/app/services/custdetails.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_validaterules_service__ = __webpack_require__("../../../../../src/app/services/validaterules.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_customer_type__ = __webpack_require__("../../../../../src/app/model/customer-type.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_custdetails_service__ = __webpack_require__("../../../../../src/app/services/custdetails.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_validaterules_service__ = __webpack_require__("../../../../../src/app/services/validaterules.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1001,11 +1001,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ViewcustdetailsComponent = (function () {
     function ViewcustdetailsComponent(custdetailsService, validaterulesService) {
         this.custdetailsService = custdetailsService;
         this.validaterulesService = validaterulesService;
         this.customerDataRes = [];
+        this.customerType = new __WEBPACK_IMPORTED_MODULE_1__model_customer_type__["a" /* CustomerType */]();
         this.smallCustomers = [];
         this.bigCustomers = [];
     }
@@ -1019,27 +1021,45 @@ var ViewcustdetailsComponent = (function () {
             _this.customerDataRes = data;
             for (var i = 0; i < _this.customerDataRes.length; i++) {
                 _this.customerDataRes[i].contractExpiryDate = _this.validaterulesService.convertUTCtoDateformat(_this.customerDataRes[i].contractExpiryDate);
-                //console.log("View Screen:", this.customerDataRes[i].contractExpiryDate); 
             }
             _this.smallCustomers = _this.customerDataRes.filter(function (customerDataRes) {
-                return customerDataRes.type == 1;
+                return customerDataRes.type == _this.customerType.smallCustomerType;
             });
             _this.bigCustomers = _this.customerDataRes.filter(function (customerDataRes) {
-                return customerDataRes.type == 2;
+                return customerDataRes.type == _this.customerType.bigCustomerType;
             });
-            //console.log(this.bigCustomers);
         });
     };
+    ViewcustdetailsComponent.prototype.ngOnDestroy = function () {
+        this.custdetailsService.getCustomerData().subscribe().unsubscribe();
+    };
     ViewcustdetailsComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
             selector: 'app-viewcustdetails',
             template: __webpack_require__("../../../../../src/app/custmgmt/viewcustdetails/viewcustdetails.component.html"),
             styles: [__webpack_require__("../../../../../src/app/custmgmt/viewcustdetails/viewcustdetails.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_custdetails_service__["a" /* CustdetailsService */],
-            __WEBPACK_IMPORTED_MODULE_2__services_validaterules_service__["a" /* ValidaterulesService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_custdetails_service__["a" /* CustdetailsService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_validaterules_service__["a" /* ValidaterulesService */]])
     ], ViewcustdetailsComponent);
     return ViewcustdetailsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/model/customer-type.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerType; });
+var CustomerType = (function () {
+    function CustomerType() {
+        this.smallCustomerType = 1;
+        this.bigCustomerType = 2;
+    }
+    return CustomerType;
 }());
 
 
@@ -1080,31 +1100,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CustdetailsService = (function () {
-    //private _url:string = 'http://localhost:3000/getcustomerdetails/customerdetails/';
-    //private _url:string = 'http://localhost:3000/';
     function CustdetailsService(http) {
         this.http = http;
         this._url = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */].envurl;
-        console.log("Cust details service initialized", this._url);
     }
     CustdetailsService.prototype.getCustomerData = function () {
         return this.http.get(this._url + 'getcustomerdetails/customerdetails/')
             .map(function (res) {
-            //console.log(res);
             return res.json();
         });
     };
     CustdetailsService.prototype.getSelectedCustomerInfo = function (id) {
         return this.http.get(this._url + 'getcustomerdetails/customerdetails/' + id)
             .map(function (res) {
-            //console.log(res);
             return res.json();
         });
     };
     // TODO: get from a remote source of question metadata
     // TODO: make asynchronous
     CustdetailsService.prototype.getCustInfoBase = function () {
-        //console.log("Name:", customerDataRes.name);
         var editCustDetailsFields = [
             new __WEBPACK_IMPORTED_MODULE_6__custmgmt_textbox_info__["a" /* TextboxInfo */]({
                 key: 'name',
@@ -1166,15 +1180,15 @@ var CustdetailsService = (function () {
         ];
         return editCustDetailsFields.sort(function (a, b) { return a.order - b.order; });
     };
+    //Function to update customr data
     CustdetailsService.prototype.updateCustomerDetail = function (editedCustomerData) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
-        //console.log('update customer details Initialized...',editedCustomerData);
         return this.http.put(this._url + 'getcustomerdetails/customerdetails/' + editedCustomerData._id, JSON.stringify(editedCustomerData), { headers: headers })
             .map(function (res) { return res.json(); });
     };
     CustdetailsService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], CustdetailsService);
     return CustdetailsService;
@@ -1191,10 +1205,6 @@ var CustdetailsService = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditCustControlService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_throw__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/throw.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1206,22 +1216,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
 var EditCustControlService = (function () {
-    function EditCustControlService(http) {
-        this.http = http;
-        this._url = 'http://localhost:3000/getcustomerdetails/customerdetails/';
+    function EditCustControlService() {
     }
-    EditCustControlService.prototype.getSelectedCustomerInfo = function (id) {
-        return this.http.get(this._url + id)
-            .map(function (res) {
-            //console.log(res);
-            return res.json();
-        });
-    };
     EditCustControlService.prototype.toFormGroup = function (selectedCustDetails, customerDataRes) {
         var group = {};
         selectedCustDetails.forEach(function (custInfo) {
@@ -1265,8 +1262,8 @@ var EditCustControlService = (function () {
         return new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */](group);
     };
     EditCustControlService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
     ], EditCustControlService);
     return EditCustControlService;
 }());
@@ -1302,7 +1299,6 @@ var ValidaterulesService = (function () {
         }
         contractExpDateDisplayFormat = contractExpiryDate.substring(0, 10).concat(" ").concat(contractExpiryDate.substring(11, 19));
         contractExpDateDisplayFormat = new Date(contractExpDateDisplayFormat);
-        //console.log("contractExpDateDisplayFormat:", contractExpDateDisplayFormat);
         return contractExpDateDisplayFormat;
     };
     //This function is called to convert date back to UTC format for DB storage
@@ -1331,7 +1327,7 @@ var ValidaterulesService = (function () {
         return revisedContractEndDate;
     };
     ValidaterulesService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [])
     ], ValidaterulesService);
     return ValidaterulesService;
@@ -1372,7 +1368,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });

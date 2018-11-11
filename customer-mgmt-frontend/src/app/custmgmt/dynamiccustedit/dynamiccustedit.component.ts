@@ -5,7 +5,7 @@ import { CustdetailsService } from '../../services/custdetails.service';
   selector: 'app-dynamiccustedit',
   templateUrl: './dynamiccustedit.component.html',
   styleUrls: ['./dynamiccustedit.component.css'],
-  providers:  [CustdetailsService]
+  providers:  [CustdetailsService],
 })
 export class DynamiccusteditComponent implements OnInit {
   custInfoToBeEdited: any[];
@@ -16,9 +16,7 @@ export class DynamiccusteditComponent implements OnInit {
   constructor(
     private custdetailsService: CustdetailsService,
   ) {
-     
     this.custInfoToBeEdited = this.custdetailsService.getCustInfoBase();
-    //console.log("custInfoToBeEdited:", this.custInfoToBeEdited);
   }
 
   ngOnInit() {

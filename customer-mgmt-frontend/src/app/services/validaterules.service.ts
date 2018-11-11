@@ -15,7 +15,7 @@ export class ValidaterulesService {
     }
     contractExpDateDisplayFormat = contractExpiryDate.substring(0,10).concat(" ").concat(contractExpiryDate.substring(11,19));
     contractExpDateDisplayFormat = new Date(contractExpDateDisplayFormat);
-    //console.log("contractExpDateDisplayFormat:", contractExpDateDisplayFormat);
+    
     return contractExpDateDisplayFormat;
   }
 

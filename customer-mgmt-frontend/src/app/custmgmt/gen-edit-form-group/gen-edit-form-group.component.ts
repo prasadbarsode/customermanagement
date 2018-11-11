@@ -1,6 +1,7 @@
-import { Component, Input, OnInit,  AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 
+import { CustomerType } from '../../model/customer-type';
 import { CustInfoBase } from '../cust-info-base';
 import { EditCustControlService } from '../../services/edit-cust-control.service';
 import { CustdetailsService } from '../../services/custdetails.service';
@@ -12,9 +13,9 @@ import { ValidaterulesService } from '../../services/validaterules.service';
   selector: 'app-gen-edit-form-group',
   templateUrl: './gen-edit-form-group.component.html',
   styleUrls: ['./gen-edit-form-group.component.css'],
-  providers: [EditCustControlService]
+  providers: [EditCustControlService],
 })
-export class GenEditFormGroupComponent implements OnInit{
+export class GenEditFormGroupComponent implements OnInit, OnDestroy{
 
   @Input() custInfoToBeEdited: CustInfoBase<any>[] = [];
   form: FormGroup;
@@ -27,6 +28,7 @@ export class GenEditFormGroupComponent implements OnInit{
 
   @Input() customerDataRes : any = {};
   editedCustomerData: {};
+  custType = new CustomerType();
 
   constructor(
     private custdetailsService: CustdetailsService,
@@ -46,7 +48,7 @@ export class GenEditFormGroupComponent implements OnInit{
     //Get revised contract expiry date as per EU offset format
     let contractExp = this.validaterulesService.getContractExpiryDateinUTCFomrt(this.form.controls['contractExpiryDate'].value,this.europeTimeZoneOffset);
     
-    if(this.customerDataRes.type==2){
+    if(this.customerDataRes.type==this.custType.bigCustomerType){
       //Set compliance checked status in boolean format
       if(this.form.controls['complianceChecked'].value == "true"){
         this.complianceChecked = true;
@@ -54,7 +56,7 @@ export class GenEditFormGroupComponent implements OnInit{
       || this.form.controls['complianceChecked'].value == null
       || this.form.controls['complianceChecked'].value == ""){
         this.complianceChecked = false;
-        //console.log("Type of compliance checked:", typeof(this.complianceChecked));
+    
       }
 
         //Request body object with updated customer details
@@ -70,7 +72,7 @@ export class GenEditFormGroupComponent implements OnInit{
         annualTurnover: parseInt(this.form.controls['annualTurnover'].value),
         complianceChecked: this.complianceChecked
       };
-      console.log(editedCustomerData);
+      
       // Update existing big customer details
       this.custdetailsService.updateCustomerDetail(editedCustomerData).subscribe(data => {
       if(data.success){
@@ -83,7 +85,7 @@ export class GenEditFormGroupComponent implements OnInit{
           alert("Details could not be updated. Please try again");
         }    
       });
-    }else if(this.customerDataRes.type==1){
+    }else if(this.customerDataRes.type==this.custType.smallCustomerType){
       const editedCustomerData = {
         _id: this.customerDataRes._id,  
         id: this.customerDataRes.id,
@@ -115,18 +117,15 @@ export class GenEditFormGroupComponent implements OnInit{
     this.custdetailsService.getSelectedCustomerInfo(this.custId).subscribe(data => {
       //Receive data from backend
       this.customerDataRes = data;
-      //console.log("Server Response:", this.customerDataRes);
-
+      
       //get UTC date in correct format as it has extra space in test data
-      this.customerDataRes.contractExpiryDate = this.convertUTCtoDateformat(this.customerDataRes.contractExpiryDate);
-      //console.log("Formatted Customer data:", this.customerDataRes);
+      this.customerDataRes.contractExpiryDate = this.validaterulesService.convertUTCtoDateformat(this.customerDataRes.contractExpiryDate);
       
       //Annual turnover and Compliance checked not required in case of small customers
       if (this.customerDataRes.type==1){
         this.custInfoToBeEdited = this.custInfoToBeEdited.filter((custInfoToBeEdited)=>{
           return custInfoToBeEdited.key!='annualTurnover' && custInfoToBeEdited.key!='complianceChecked'
         });
-        //console.log("revised custInfoToBeEdited:", this.custInfoToBeEdited);
       }
 
       //Populate FormGroup
@@ -134,7 +133,7 @@ export class GenEditFormGroupComponent implements OnInit{
       
       //Set display date in yyyy-MM-dd as it is only accepted format in ng-Bootstrap
       this.form.value.contractExpiryDate = new Date(this.form.value.contractExpiryDate);
-      //console.log(this.form.value.contractExpiryDate);
+      
       this.form.controls['contractExpiryDate'].setValue({
         year: parseInt(this.form.value.contractExpiryDate.getFullYear()),
         month: parseInt(this.form.value.contractExpiryDate.getMonth() + 1),
@@ -148,31 +147,11 @@ export class GenEditFormGroupComponent implements OnInit{
       //It is used to differentiate between max date for small and big customers
       this.form.addControl('customerType', new FormControl('', Validators.required));
       this.form.controls['customerType'].setValue(this.customerDataRes.type);
-      //console.log(this.form.value);
-      
     }); 
 
   }
 
-  convertUTCtoDateformat(contractExpiryDate){
-    //Convert UTC date format to standard date
-    this.contractExpDateDisplayFormat = contractExpiryDate.split(" ");
-
-    //Get Counrty Specific Timezone offset from existing entry
-    //this.europeTimeZoneOffset = contractExpiryDate.substring(19,contractExpiryDate.length);
-    this.europeTimeZoneOffset = this.contractExpDateDisplayFormat[1];
-    //console.log("europeTimeZoneOffset:", this.europeTimeZoneOffset);
-      
-    if(this.contractExpDateDisplayFormat.length > 1){
-      contractExpiryDate = this.contractExpDateDisplayFormat[0] + this.contractExpDateDisplayFormat[1];
-    }
-
-    this.contractExpDateDisplayFormat = contractExpiryDate.substring(0,10).concat(" ").concat(contractExpiryDate.substring(11,19));
-    this.contractExpDateDisplayFormat = new Date(this.contractExpDateDisplayFormat);
-    
-    //this.contractExpDateDisplayFormat = new Date(contractExpiryDate);
-    
-    return this.contractExpDateDisplayFormat;
+  ngOnDestroy(){
+    this.custdetailsService.getSelectedCustomerInfo(this.custId).subscribe().unsubscribe();
   }
-
 }

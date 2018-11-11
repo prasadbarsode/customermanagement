@@ -21,19 +21,14 @@ import { DatepickerInfo } from '../custmgmt/datepicker-info';
 export class CustdetailsService {
 
   private _url = environment.envurl;
-  //private _url:string = 'http://localhost:3000/getcustomerdetails/customerdetails/';
-  //private _url:string = 'http://localhost:3000/';
-
+  
   constructor(
     private http: Http,
-  ) {
-      console.log("Cust details service initialized", this._url);
-  }
+  ) { }
 
   getCustomerData(): Observable<SmallcustDetails[]>{
     return this.http.get(this._url+'getcustomerdetails/customerdetails/')
       .map(res => {
-        //console.log(res);
         return res.json();
       });
   }
@@ -41,7 +36,6 @@ export class CustdetailsService {
   getSelectedCustomerInfo(id){
     return this.http.get(this._url+'getcustomerdetails/customerdetails/' + id)
       .map(res => {
-        //console.log(res);
         return res.json()
       });
   }
@@ -49,9 +43,6 @@ export class CustdetailsService {
   // TODO: get from a remote source of question metadata
   // TODO: make asynchronous
   getCustInfoBase() {
-
-  //console.log("Name:", customerDataRes.name);
-
   let editCustDetailsFields: CustInfoBase<any>[] = [  
     new TextboxInfo({
       key: 'name',
@@ -115,10 +106,10 @@ export class CustdetailsService {
     return editCustDetailsFields.sort((a, b) => a.order - b.order);
   }
 
+  //Function to update customr data
   updateCustomerDetail(editedCustomerData){
     let headers = new Headers();
         headers.append('Content-Type','application/json');
-        //console.log('update customer details Initialized...',editedCustomerData);
         return this.http.put(this._url+'getcustomerdetails/customerdetails/'+editedCustomerData._id, JSON.stringify(editedCustomerData),{headers: headers})
         .map(res => res.json());
   }
